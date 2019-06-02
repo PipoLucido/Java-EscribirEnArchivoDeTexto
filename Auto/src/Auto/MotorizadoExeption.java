@@ -14,4 +14,5 @@ public class MotorizadoExeption extends Exception {
     public MotorizadoExeption(String mensaje) {
         super(mensaje); // super invoca a la clase padre, en este caso Exeption
     }
+    
 }

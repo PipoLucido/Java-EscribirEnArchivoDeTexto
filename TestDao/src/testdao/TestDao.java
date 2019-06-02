@@ -26,16 +26,24 @@ public class TestDao {
     public static void main(String[] args) throws MotorizadoExeption {
         DAO dao;
         try {
+            
             dao = new AutoDAOtxt("auto.txt");
+            /*
+            DAOfactory factory = DAOfactory.getInstance();
+            DAOfactory factory2 = DAOfactory.getInstance();
+            Map<String,String> config = new Map<String,String>();
+            dao = factory.crearDAO(config);            
+            */
+            
         } catch (DAOExeption ex) {
             Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
         
-        Calendar x = null;
+        Calendar fechaX = null; ///MANDARLE UN CALENDARIO, CREAR MICALENDAR
         
         Auto fiat;
-        fiat = new Auto("12345678912345678", x);
+        fiat = new Auto("123456G78912345678", "fiat","modelo","4646",fechaX);
         
         try {
             dao.insertar(fiat);
@@ -45,3 +53,5 @@ public class TestDao {
     }
     
 }
+
+//gaston.distilio@gmail.com <---- pasar parcial

@@ -41,7 +41,7 @@ public class TestAuto {
         try {
             
             Calendar fechaFab = new GregorianCalendar(2019,5,44);
-              auto2 = new Auto("12345671231231234",fechaFab);   
+              auto2 = new Auto("12345671231231234", "fiat", "uno", "4465-BFA");   
               
         } catch (MotorizadoExeption ex) {
             Logger.getLogger(TestAuto.class.getName()).log(Level.SEVERE, null, ex);
@@ -49,7 +49,9 @@ public class TestAuto {
         }
         
         System.out.println("Todo OK!\n");
-        
+        System.out.println(auto2.getMarca());
+        System.out.println(auto2.getModelo());
+        System.out.println(auto2.getPatente());
     }
     
 }

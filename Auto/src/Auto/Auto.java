@@ -5,46 +5,61 @@
  */
 package Auto;
 
+import java.util.Calendar;
+
 /**
  *
  * @author Rodrigo
  */
 public class Auto extends Motorizado{
     
-    private String marca;
-    private String modelo;
-
-    public Auto(){
+     public Auto(){
         super();
     }
-    public Auto(String vin, MiCalendario fechaFab) throws MotorizadoExeption {
+
+   /* public Auto(String vin, Calendar fechaFab) throws MotorizadoExeption {
         super(vin, fechaFab);
-    }
+        
+    }*/
+     
+     public Auto(String vin, String marca, String modelo, String patente,Calendar fechaFab ) throws MotorizadoExeption
+	{
+		super( vin, marca, modelo, patente,fechaFab );
+		this.marca = marca;
+                this.modelo = modelo;
+                this.patente = patente;
+	}
+
     
-    public Auto(String vin, MiCalendario fechaFab, String marca) throws MotorizadoExeption {
-        super(vin, fechaFab);
-        this.marca = marca;
-    }
     
-    public Auto(String vin, MiCalendario fechaFab, String marca, String modelo) throws MotorizadoExeption {
-        super(vin, fechaFab);
-        this.marca = marca;
-        this.modelo = modelo;
+   
+    
+    private Double precio;
+    
+    private Integer anio;
+
+    
+    
+    
+
+
+
+
+    public Double getPrecio() {
+        return precio;
     }
 
-    public String getMarca() {
-        return marca;
+    public void setPrecio(Double precio) {
+        this.precio = precio;
     }
 
-    public String getModelo() {
-        return modelo;
+    public Integer getAnio() {
+        return anio;
+    }
+
+    public void setAnio(Integer anio) {
+        this.anio = anio;
     }
     
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
+   
 }

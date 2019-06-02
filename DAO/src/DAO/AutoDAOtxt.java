@@ -38,7 +38,7 @@ public class AutoDAOtxt extends DAO<Auto,String>{
         try {
             // se posiciona al final del archivo
             raf.seek(raf.length());
-            raf.writeBytes(entidad.toString());
+            raf.writeBytes( entidad.getVin() +"  "+ entidad.getMarca() +"  "+ entidad.getModelo() +"  "+ entidad.getFechaFab());
             
         } catch (IOException ex) {
             Logger.getLogger(AutoDAOtxt.class.getName()).log(Level.SEVERE, null, ex);
