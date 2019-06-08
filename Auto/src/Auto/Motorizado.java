@@ -33,7 +33,6 @@ public class Motorizado {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.patente = patente;
-		
 	}
     
 
