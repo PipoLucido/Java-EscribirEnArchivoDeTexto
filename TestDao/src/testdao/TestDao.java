@@ -22,8 +22,10 @@ public class TestDao {
 
     /**
      * @param args the command line arguments
+     * @throws Auto.MotorizadoExeption
+     * @throws testdao.MiCalendarioException
      */
-    public static void main(String[] args) throws MotorizadoExeption {
+    public static void main(String[] args) throws MotorizadoExeption, MiCalendarioException {
         DAO dao;
         try {
             
@@ -40,10 +42,15 @@ public class TestDao {
             return;
         }
         
-        Calendar fechaX = null; ///MANDARLE UN CALENDARIO, CREAR MICALENDAR
+        Calendar fechaX = null;
+        try {
+            fechaX = new MiCalendario(10, 3, 2009); ///MANDARLE UN CALENDARIO, CREAR MICALENDAR
+        } catch (MiCalendarioException ex) {
+            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         Auto fiat;
-        fiat = new Auto("123456G78912345678", "fiat","modelo","4646",fechaX);
+        fiat = new Auto("123456G78912345678", "fiat", "modelo", "4646", fechaX);
         
         try {
             dao.insertar(fiat);

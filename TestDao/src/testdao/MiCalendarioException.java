@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Auto;
+package testdao;
 
 /**
  *
  * @author Emili
  */
-public class MiCalendarException extends Exception {
+public class MiCalendarioException extends Exception {
 
-    public MiCalendarException() {
+    public MiCalendarioException() {
         super("Fecha introducida no válida");
     }
 }

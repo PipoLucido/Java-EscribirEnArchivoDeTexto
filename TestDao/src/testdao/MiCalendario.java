@@ -6,16 +6,28 @@
 package testdao;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  *
- * @author Rodrigo
+ * @author Emili
  */
-public abstract class MiCalendario extends Calendar {
+public class MiCalendario extends GregorianCalendar{
 
-    public MiCalendario(int i, int i0, int i1) {
-        Calendar calendario;
-       
+    public MiCalendario(int d, int m, int a) throws MiCalendarioException
+    {
+        super(a, m, d);
+        
+        if (this.get(Calendar.DAY_OF_MONTH) != d || this.get(Calendar.MONTH) != m || this.get(Calendar.YEAR) != a)
+            throw new MiCalendarioException();
     }
     
+    @Override
+    public String toString() {
+        return Integer.toString(this.get(Calendar.DAY_OF_MONTH)) +
+                "-" +
+                Integer.toString(this.get(Calendar.MONTH)) +
+                "-" +
+                Integer.toString(this.get(Calendar.YEAR));
+    }
 }
