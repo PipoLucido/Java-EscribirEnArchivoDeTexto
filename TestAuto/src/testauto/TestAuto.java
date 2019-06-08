@@ -10,7 +10,6 @@ import Auto.Motorizado;
 import Auto.MotorizadoExeption;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -38,11 +37,10 @@ public class TestAuto {
         
        
         Auto auto2;
+        Calendar fechaFab = new GregorianCalendar(2019,5,44);
+
         try {
-            
-            Calendar fechaFab = new GregorianCalendar(2019,5,44);
-              auto2 = new Auto("12345671231231234", "fiat", "uno", "4465-BFA");   
-              
+            auto2 = new Auto("12345671231231234", "fiat", "uno", "4465-BFA", fechaFab);      
         } catch (MotorizadoExeption ex) {
             Logger.getLogger(TestAuto.class.getName()).log(Level.SEVERE, null, ex);
             return;
