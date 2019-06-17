@@ -30,33 +30,54 @@ public class TestDao {
         try {
             
             dao = new AutoDAOtxt("auto.txt");
-            /*
-            DAOfactory factory = DAOfactory.getInstance();
-            DAOfactory factory2 = DAOfactory.getInstance();
-            Map<String,String> config = new Map<String,String>();
-            dao = factory.crearDAO(config);            
-            */
+           
             
         } catch (DAOExeption ex) {
             Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
         
-        Calendar fechaX = null;
-        try {
-            fechaX = new MiCalendario(10, 3, 2009); ///MANDARLE UN CALENDARIO, CREAR MICALENDAR
-        } catch (MiCalendarioException ex) {
-            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        Calendar fechaX;
         Auto fiat;
-        fiat = new Auto("123456G78912345678", "fiat", "modelo", "4646", fechaX);
+        
+        //LOS CAMPOS SON DE LONGITUD FIJA /VIN (17)/MARCA(5)/MODELO(5)/FECHA(CALENDAR)/ESTADO(5)
+        
+        /*
+        //ESCRIBE
+        fechaX = new MiCalendario(10, 3, 2009);
+        fiat = new Auto("123456G7891234567", "chevy","cheto","4646",fechaX);
         
         try {
             dao.insertar(fiat);
         } catch (DAOExeption ex) {
             Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        */
+        
+        /*
+        //MODIFICA
+        fechaX = new MiCalendario(9, 1, 2022);
+        fiat = new Auto("323456G323456G789", "Chevr", "Fuego", "4850", fechaX);
+
+        try {
+            dao.modificar(fiat);
+        } catch (DAOExeption ex) {
+            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+        
+        //ELIMINA 
+        // La key es el vim
+        fechaX = new MiCalendario(12, 8, 2012);
+        fiat = new Auto("3234888323456G789", "Ford#", "model", "4850", fechaX);
+
+        try {
+            dao.eliminar(fiat.getVin());
+        } catch (DAOExeption ex) {
+            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
     
 }

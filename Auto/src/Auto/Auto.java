@@ -24,6 +24,7 @@ public class Auto extends Motorizado{
      
      public Auto(String vin, String marca, String modelo, String patente,Calendar fechaFab ) throws MotorizadoExeption
 	{
+            //Auto("123456G7891234567", "fiat","modelo","4646",fechaX);
 		super( vin, marca, modelo, patente,fechaFab );
 		this.marca = marca;
                 this.modelo = modelo;

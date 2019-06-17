@@ -13,11 +13,12 @@ import java.util.Calendar;
  */
 public class Motorizado {
     
-        private String vin;
-        private Calendar fechaFab;
-	protected String marca;
-	protected String modelo;
-	protected String patente;
+    public final int vin_length = 17;
+    private String vin;
+    private Calendar fechaFab;
+    protected String marca;
+    protected String modelo;
+    protected String patente;
 
     
     public Motorizado(){
@@ -33,6 +34,7 @@ public class Motorizado {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.patente = patente;
+		setFechaFab(fechaFab);
 	}
     
 
@@ -46,10 +48,9 @@ public class Motorizado {
             throw new MotorizadoExeption("El VIN no puede ser vacio");
             //para lanzar exeption hay que agregar throws
         }
-            int VIN_LONG = 17;
         
-        if(vin.length() != VIN_LONG){
-            throw new MotorizadoExeption("El VIN debe contener "+VIN_LONG+" caracteres");
+        if(vin.length() != vin_length){
+            throw new MotorizadoExeption("El VIN debe contener "+vin_length+" caracteres");
         }
             
         
@@ -92,7 +93,7 @@ public class Motorizado {
 		return fechaFab;
 	}
 
-	public void setFechaFab(Calendar fechaFab)
+	public final void setFechaFab(Calendar fechaFab)
 	{
 		this.fechaFab = fechaFab;
 	}

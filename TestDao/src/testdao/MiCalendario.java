@@ -24,9 +24,25 @@ public class MiCalendario extends GregorianCalendar{
     
     @Override
     public String toString() {
-        return Integer.toString(this.get(Calendar.DAY_OF_MONTH)) +
+        
+        String day,month;
+        
+        if(this.get(Calendar.DAY_OF_MONTH) < 10 ){
+            day = "0"+Integer.toString(this.get(Calendar.DAY_OF_MONTH));
+        }else{
+            day = Integer.toString(this.get(Calendar.DAY_OF_MONTH));
+        }
+        
+        if(this.get(Calendar.MONTH) < 10 ){
+            month = "0"+Integer.toString(this.get(Calendar.MONTH));
+        }else{
+            month = Integer.toString(this.get(Calendar.MONTH));
+        }
+        
+        
+        return day +
                 "-" +
-                Integer.toString(this.get(Calendar.MONTH)) +
+                month +
                 "-" +
                 Integer.toString(this.get(Calendar.YEAR));
     }

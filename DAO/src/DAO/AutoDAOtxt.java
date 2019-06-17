@@ -18,28 +18,26 @@ import java.util.logging.Logger;
  *
  * @author Rodrigo
  */
-public class AutoDAOtxt extends DAO<Auto,String>{
+public class AutoDAOtxt extends DAO<Auto, String> {
 
     private RandomAccessFile raf;
-    
+
     public AutoDAOtxt(String path) throws DAOExeption {
         File file = new File(path);
         try {
             raf = new RandomAccessFile(file, "rws");  //sincronisa S
         } catch (FileNotFoundException ex) {
-           throw new DAOExeption("El archivo no existe! //==> "+ex);
+            throw new DAOExeption("El archivo no existe! //==> " + ex);
         }
     }
 
-    
-    
     @Override
     public void insertar(Auto entidad) throws DAOExeption {
         try {
             // se posiciona al final del archivo
             raf.seek(raf.length());
-            raf.writeBytes( entidad.getVin() +"  "+ entidad.getMarca() +"  "+ entidad.getModelo() +"  "+ entidad.getFechaFab());
-            
+            raf.writeBytes(entidad.getVin() + "  " + entidad.getMarca() + "  " + entidad.getModelo() + "  " + entidad.getFechaFab() + " NUEVO\n");
+            raf.close();
         } catch (IOException ex) {
             Logger.getLogger(AutoDAOtxt.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -47,12 +45,72 @@ public class AutoDAOtxt extends DAO<Auto,String>{
 
     @Override
     public void modificar(Auto entidad) throws DAOExeption {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            // busca la entidad
+            String vin; // Almacena el contenido del txt linea por linea
+            String campos[];
+            String linea;
+            int seekaux = 0;
+
+            raf.seek(seekaux);
+            while ((linea = raf.readLine()) != null) {
+                if (linea.length() > 16) {
+                    vin = linea.substring(0, 17);
+
+                    if (vin.equals(entidad.getVin())) {
+
+                        if (raf.getFilePointer() != (int) raf.length()) {
+                            raf.seek(raf.getFilePointer() - linea.length() - 1); //SE POSISIONA AL INICIO Y REESCRIBE LA LINEA, ES DE LONGITUD FIJA ASI QUE NO PISA BYTES QUE NO LE CORRESPONDAN
+                            raf.writeBytes(entidad.getVin() + "  " + entidad.getMarca() + " " + entidad.getModelo() + " " + entidad.getFechaFab() + " MODIF ");
+                        } else {
+                            raf.seek(raf.getFilePointer() - linea.length()); //LO MISMO NOMAS QUE SI ESTA AL FINAL DEL ARCHIVO
+                            raf.writeBytes(entidad.getVin() + "  " + entidad.getMarca() + " " + entidad.getModelo() + " " + entidad.getFechaFab() + " MODIF");
+                        }
+
+                        break;
+                    }
+
+                }
+            }
+            raf.close();
+        } catch (IOException ex) {
+            Logger.getLogger(AutoDAOtxt.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void eliminar(String vin) throws DAOExeption {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        //////
+        try {
+            // busca la entidad
+            String vinLeido; // Almacena el contenido del txt linea por linea
+            String campos[];
+            String linea;
+            int seekaux = 0;
+
+            raf.seek(seekaux);
+            while ((linea = raf.readLine()) != null) {
+                if (linea.length() > 16) {
+                    vinLeido = linea.substring(0, 17);
+                   /* System.out.println(vin);
+                    System.out.println(vinLeido);*/
+                    if (vinLeido.equals(vin)) {
+
+                        raf.seek(raf.getFilePointer() - 7); //SE POSISIONA EN ESTADO Y LO CAMBIA POR ELIMI
+                        raf.writeBytes("ELIMI");
+
+                        break;
+                    }
+
+                }
+            }
+            raf.close();
+        } catch (IOException ex) {
+            Logger.getLogger(AutoDAOtxt.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        ////////
     }
 
     @Override
@@ -64,5 +122,5 @@ public class AutoDAOtxt extends DAO<Auto,String>{
     public List<Auto> listar() throws DAOExeption {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
