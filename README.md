@@ -5,8 +5,8 @@
   * **Docentes**: [Pan Néstor Ariel](https://ingenieria.unlam.edu.ar/descargas/48_2011CVPanNstorAriel.pdf) y 
 Guzman Gabriel Eduardo
   * **Fecha de entrega:** 29 de junio del 2019
-  * **Nota: **
-  * **Observaciones: **
+  * **Nota:**
+  * **Observaciones:**
 
 ### Miembros de grupo
   * [Pereyra Rodrigo](https://github.com/PipoLucido)
