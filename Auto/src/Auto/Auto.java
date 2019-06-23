@@ -31,20 +31,9 @@ public class Auto extends Motorizado{
                 this.patente = patente;
 	}
 
-    
-    
-   
-    
     private Double precio;
     
     private Integer anio;
-
-    
-    
-    
-
-
-
 
     public Double getPrecio() {
         return precio;
