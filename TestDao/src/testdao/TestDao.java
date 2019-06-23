@@ -39,47 +39,48 @@ public class TestDao {
         
         Calendar fechaX;
         Auto fiat;
+        fechaX = new MiCalendario(11, 10, 1313);
+   
+        fiat = new Auto(
+                "8724888323456G786", // VIN
+                "TOYOTA", // Marca
+                "SUPPRA", // Modelo
+                "BSB206", //Patente
+                fechaX); // Fecha de fabricacion
         
-        //LOS CAMPOS SON DE LONGITUD FIJA /VIN (17)/MARCA(5)/MODELO(5)/FECHA(CALENDAR)/ESTADO(5)
+        insertar(fiat, dao);
+        //Modificar(fiat, dao);
+        //Eliminar(fiat, dao);
         
-        /*
-        //ESCRIBE
-        fechaX = new MiCalendario(10, 3, 2009);
-        fiat = new Auto("123456G7891234567", "chevy","cheto","4646",fechaX);
-        
-        try {
-            dao.insertar(fiat);
-        } catch (DAOExeption ex) {
-            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
-        
-        /*
-        //MODIFICA
-        fechaX = new MiCalendario(9, 1, 2022);
-        fiat = new Auto("323456G323456G789", "Chevr", "Fuego", "4850", fechaX);
-
-        try {
-            dao.modificar(fiat);
-        } catch (DAOExeption ex) {
-            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
-        
-        //ELIMINA 
-        // La key es el vim
-        fechaX = new MiCalendario(12, 8, 2012);
-        fiat = new Auto("3234888323456G789", "Ford#", "model", "4850", fechaX);
-
-        try {
-            dao.eliminar(fiat.getVin());
-        } catch (DAOExeption ex) {
-            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
+       
     }
     
+    public static void insertar(Auto auto, DAO dao)
+    {
+        try {
+            dao.insertar(auto);
+        } catch (DAOExeption ex) {
+            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void Modificar(Auto auto, DAO dao)
+    {
+        try {
+            dao.modificar(auto);
+        } catch (DAOExeption ex) {
+            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void Eliminar(Auto auto, DAO dao)
+    {
+        try {
+            dao.eliminar(auto.getVin());
+        } catch (DAOExeption ex) {
+            Logger.getLogger(TestDao.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
 }
 
 //gaston.distilio@gmail.com <---- pasar parcial
